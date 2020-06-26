@@ -68,5 +68,5 @@ git clone git@github.com:rafaeldelboni/alphadel-crkbd-keymap.git qmk_firmware/ke
 
 1) from the `qmk_firmware` directory run:
 ```
-$ sudo make crkbd:alphadel
+$ sudo make crkbd/rev1:alphadel                                                                                               <<<
 ```
