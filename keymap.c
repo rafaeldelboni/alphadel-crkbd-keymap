@@ -16,7 +16,7 @@ extern uint8_t is_master;
 #define _RAISE 2
 #define _ADJUST 3
 
-#define CTRLESC MT(MOD_LCTL, KC_ESC)  // Hold for Left Ctrl, Tap for ESC [CEsc]
+#define CTRLESC LCTL_T(KC_ESC)  // Hold for Left Ctrl, Tap for ESC [CEsc]
 
 enum custom_keycodes {
   QWERTY = SAFE_RANGE,
