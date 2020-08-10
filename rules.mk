@@ -8,3 +8,5 @@ SRC +=  ./lib/glcdfont.c \
         # ./lib/mode_icon_reader.c \
         # ./lib/host_led_state_reader.c \
         # ./lib/timelogger.c \
+
+EXTRAKEY_ENABLE = yes          # Audio control and System control
