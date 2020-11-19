@@ -157,18 +157,10 @@ void oled_render_logo(void) {
     oled_write_P(crkbd_logo, false);
 }
 
-char wpm_str[10] = {};
-
-void oled_render_wpm(void) {
-  snprintf(wpm_str, sizeof(wpm_str), "WPM: %03d", get_current_wpm());
-  oled_write(wpm_str, false);
-}
-
 void oled_task_user(void) {
     if (is_master) {
         oled_render_layer_state();
         oled_render_keylog();
-        oled_render_wpm();
     } else {
         oled_render_logo();
     }
