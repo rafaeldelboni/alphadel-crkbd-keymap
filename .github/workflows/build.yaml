@@ -14,12 +14,12 @@ jobs:
     runs-on: ubuntu-latest
     container: qmkfm/qmk_cli
     env:
-      QMK_HOME: ~/qmk_firmware
+      QMK_HOME: $GITHUB_WORKSPACE
 
     steps:
     - uses: actions/checkout@v3
       with:
-        path: ~/qmk_firmware/keyboards/crkbd/keymaps/alphadel
+        path: keyboards/crkbd/keymaps/alphadel
 
     - name: Install dependencies
       run: pip3 install -r requirements-dev.txt
