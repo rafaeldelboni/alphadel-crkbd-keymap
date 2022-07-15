@@ -2,8 +2,8 @@ name: Build
 
 # Controls when the action will run. 
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
-  pull_request:
+  # Triggers the workflow on push events but only for the main branch
+  push:
     branches: [ master ]
 
   # Allows you to run this workflow manually from the Actions tab
@@ -13,26 +13,23 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container: qmkfm/qmk_cli
-    env:
-      QMK_HOME: $GITHUB_WORKSPACE
 
     steps:
     - uses: actions/checkout@v3
       with:
-        path: keyboards/crkbd/keymaps/alphadel
+        repo: qmk/qmk_firmware
+        path: qmk
 
-    - name: Install dependencies
-      run: pip3 install -r requirements-dev.txt
+    - uses: actions/checkout@v3
+      with:
+        path: qmk/keyboards/crkbd/keymaps/alphadel
 
     - name: Run Build
-      run: qmk compile --keyboard crkbd/rev1 --keymap alphadel
-
-    - name: Run LS
-      run: ls ~/qmk_firmware
+      run: make -C qmk crkbd/rev1:alphadel
 
     - name: Upload uberjar artifact
       uses: actions/upload-artifact@v3
       with:
         name: hex-firwmare
-        path: ~/qmk_firmware/alphadel.hex
+        path: ~/qmk/crkbd_alphadel.hex
         retention-days: 1
