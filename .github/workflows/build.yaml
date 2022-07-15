@@ -13,23 +13,28 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container: qmkfm/qmk_cli
+    env:
+      QMK_HOME: ${{ github.workspace }}/qmk_firmware
 
     steps:
     - uses: actions/checkout@v3
       with:
-        repo: qmk/qmk_firmware
-        path: qmk
+        repository: qmk/qmk_firmware
+        path: qmk_firmware
 
     - uses: actions/checkout@v3
       with:
-        path: qmk/keyboards/crkbd/keymaps/alphadel
+        path: qmk_firmware/keyboards/crkbd/keymaps/alphadel
+
+    - name: QMK Setup
+      run: qmk setup -y
 
     - name: Run Build
-      run: make -C qmk crkbd/rev1:alphadel
+      run: qmk compile -kb crkbd/rev1 -km alphadel
 
-    - name: Upload uberjar artifact
+    - name: Upload Hex Firmware
       uses: actions/upload-artifact@v3
       with:
         name: hex-firwmare
-        path: ~/qmk/crkbd_alphadel.hex
+        path: ./qmk_firmware/crkbd_rev1_alphadel.hex
         retention-days: 1
