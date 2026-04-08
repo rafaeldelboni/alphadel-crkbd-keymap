@@ -17,12 +17,12 @@ jobs:
       QMK_HOME: ${{ github.workspace }}/qmk_firmware
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v6
       with:
         repository: qmk/qmk_firmware
         path: qmk_firmware
 
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v6
       with:
         path: qmk_firmware/keyboards/crkbd/keymaps/alphadel
 
@@ -33,7 +33,7 @@ jobs:
       run: qmk compile -kb crkbd/rev1 -km alphadel
 
     - name: Upload Hex Firmware
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v6
       with:
         name: hex-firwmare
         path: ./qmk_firmware/crkbd_rev1_alphadel.hex
